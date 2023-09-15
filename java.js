@@ -1,10 +1,10 @@
-const inputbox = document.getElementById("input-box")
-const listcontainer = document.getElementById("list-container")
-function animepahe(){
-    if(inputbox.value === ''){
-        alert("write something");
-    }
-    else{
+const inputbox = document.getElementById("input-box");
+const listcontainer = document.getElementById("list-container");
+
+function animepahe() {
+    if (inputbox.value === "") {
+        alert("Write something.");
+    } else {
         let li = document.createElement("li");
         li.innerHTML = inputbox.value;
         listcontainer.appendChild(li);
@@ -16,21 +16,20 @@ function animepahe(){
     saveData();
 }
 
-listcontainer.addEventListener("click", function(e){
-    if(e.target.tagName === "li"){
+listcontainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "LI") {
         e.target.classList.toggle("checked");
         saveData();
-    }
-    else if(target.tagName === "SPAN"){
-        e.target.paretElement.remove();
+    } else if (e.target.tagName === "SPAN") { // Corrected 'target' to 'e.target'
+        e.target.parentElement.remove(); // Corrected 'paretElement' to 'parentElement'
         saveData();
     }
 }, false);
 
-function saveData(){
+function saveData() {
     localStorage.setItem("data", listcontainer.innerHTML);
 }
 
-function showtask(){
+function showtask() {
     listcontainer.innerHTML = localStorage.getItem("data");
 }
